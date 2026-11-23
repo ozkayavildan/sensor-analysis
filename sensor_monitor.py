@@ -39,7 +39,7 @@ def find_outliers(readings, alert_threshold):
     return [reading for reading in readings if reading > alert_threshold]
 
 
-# Create a line graph
+# Create and save a line graph
 def plot_readings(readings, alert_threshold):
     plt.figure()
 
@@ -65,10 +65,19 @@ def plot_readings(readings, alert_threshold):
     plt.ylabel("Sensor Value")
     plt.legend()
     plt.grid(True)
+
+    # Save the line graph as an image
+    try:
+        plt.savefig("sensor_line_graph.png")
+        print("Line graph saved as sensor_line_graph.png")
+    except OSError as error:
+        print("Error saving line graph:", error)
+
     plt.show()
+    plt.close()
 
 
-# Create a histogram
+# Create and save a histogram
 def plot_histogram(readings):
     plt.figure()
 
@@ -83,7 +92,16 @@ def plot_histogram(readings):
     plt.xlabel("Sensor Value")
     plt.ylabel("Frequency")
     plt.grid(True)
+
+    # Save the histogram as an image
+    try:
+        plt.savefig("sensor_histogram.png")
+        print("Histogram saved as sensor_histogram.png")
+    except OSError as error:
+        print("Error saving histogram:", error)
+
     plt.show()
+    plt.close()
 
 
 # Get and validate user input
@@ -247,3 +265,4 @@ def main():
 # Start the program
 if __name__ == "__main__":
     main()
+    
